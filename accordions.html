@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>El autocontrol</title>
+    <style>
+      :root {
+        --autocontrol-blue: #28539d;
+        --autocontrol-blue-hover: #6381b7;
+        --autocontrol-text: #064d9c;
+        --autocontrol-yellow: #ffcd23;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f2f2f2;
+        color: var(--autocontrol-text);
+        font-family: Arial, sans-serif;
+      }
+
+      .autocontrol-accordion {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 28px 16px 0;
+      }
+
+      .autocontrol-accordion .accordion-item {
+        margin-bottom: 12px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 20px;
+        background: transparent;
+      }
+
+      .autocontrol-accordion .accordion-item.is-expanded {
+        margin-bottom: 14px;
+      }
+
+      .accordion-header {
+        margin: 0;
+      }
+
+      .autocontrol-accordion .accordion-button {
+        display: flex;
+        width: 100%;
+        min-height: 69px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 24px;
+        appearance: none;
+        border: 0;
+        border-radius: 20px !important;
+        background: var(--autocontrol-blue);
+        box-shadow: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .autocontrol-accordion .accordion-button::after {
+        display: none;
+      }
+
+      .autocontrol-accordion .accordion-collapse {
+        display: none;
+      }
+
+      .autocontrol-accordion .accordion-collapse.show {
+        display: block;
+      }
+
+      .autocontrol-accordion .accordion-button:hover,
+      .autocontrol-accordion .accordion-button:focus-visible {
+        background: var(--autocontrol-blue-hover);
+        color: #fff;
+      }
+
+      .autocontrol-accordion .accordion-button:not(.collapsed) {
+        background: var(--autocontrol-yellow);
+        color: var(--autocontrol-text);
+        font-weight: 600;
+      }
+
+      .autocontrol-accordion .accordion-collapse {
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 20px;
+        background: #fff;
+      }
+
+      .autocontrol-accordion .accordion-body {
+        display: grid;
+        min-height: 313px;
+        grid-template-columns: 60% 40%;
+        align-items: center;
+        padding: 34px 3.5%;
+      }
+
+      .accordion-copy {
+        max-height: 244px;
+        overflow-y: auto;
+        padding-right: 14px;
+        font-size: 20px;
+        line-height: 1.16;
+      }
+
+      .accordion-copy p {
+        margin: 0 0 18px;
+      }
+
+      .accordion-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .accordion-copy strong {
+        font-weight: 700;
+      }
+
+      .accordion-illustration {
+        display: block;
+        width: 325px;
+        max-width: 100%;
+        height: auto;
+        justify-self: center;
+        border-radius: 16px;
+      }
+
+      @media (max-width: 767.98px) {
+        .autocontrol-accordion {
+          padding: 16px 10px;
+        }
+
+        .autocontrol-accordion .accordion-button {
+          min-height: 60px;
+          padding: 10px 18px;
+          font-size: 30px;
+        }
+
+        .autocontrol-accordion .accordion-body {
+          min-height: 0;
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 24px;
+        }
+
+        .accordion-copy {
+          max-height: 244px;
+        }
+      }
+    </style>
+  </head><body><main class="autocontrol-accordion accordion accordion-flush" id="autocontrolAccordion">
+<section class="accordion-item is-expanded">
+<h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" aria-expanded="true" aria-controls="collapseOne">&nbsp;Título de la pestaña 1 </button></h2>
+<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+<div class="accordion-body">
+<div class="accordion-copy">
+<p>El autocontrol es la capacidad que tienen los actores del sistema (profesionales, instituciones, procesos) para verificar, evaluar y mejorar su propio desempeño en relación con estándares de calidad establecidos, sin esperar la intervención externa.</p>
+</div>
+<img src="images/protocolo.png" alt="Protocolo" title="Protocolo" data-d2l-editor-default-img-style="true" style="max-width: 100%;"></div>
+</div>
+</section>
+<section class="accordion-item">
+<h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" aria-expanded="false" aria-controls="collapseTwo">&nbsp;Título de la pestaña 2 </button></h2>
+<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+<div class="accordion-body">
+<div class="accordion-copy">
+<p>El autocontrol permite identificar oportunidades de mejora, corregir fallas a tiempo y fortalecer la calidad de los procesos y servicios.</p>
+</div>
+<img class="accordion-illustration" src="images/ciclo-phva.png" alt="Ciclo PHVA como herramienta para mejorar los procesos"></div>
+</div>
+</section>
+<section class="accordion-item">
+<h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" aria-expanded="false" aria-controls="collapseThree">&nbsp;Título de la pestaña 3 </button></h2>
+<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+<div class="accordion-body">
+<div class="accordion-copy">
+<p><strong>Estándares claros y conocidos:</strong> El personal debe saber qué se espera de su labor.</p>
+<p><strong>Instrumentos de autoevaluación:</strong> Listas de chequeo (checklist), indicadores, protocolos.</p>
+<p><strong>Capacitación continua:</strong> El conocimiento fortalece la capacidad de identificar y corregir fallas.</p>
+<p><strong>Retroalimentación efectiva:</strong> Basada en resultados, permite reconocer avances y orientar mejoras.</p>
+<p><strong>Acciones de mejora:</strong> Los hallazgos orientan planes de acción y seguimiento de resultados.</p>
+</div>
+<img class="accordion-illustration" src="images/protocolo.png" alt="Protocolo de verificación en una lista de chequeo"></div>
+</div>
+</section>
+<section class="accordion-item">
+<h2 class="accordion-header" id="headingFour"><button class="accordion-button collapsed" type="button" aria-expanded="false" aria-controls="collapseFour"> Título de la pestaña 4 </button></h2>
+<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
+<div class="accordion-body">
+<div class="accordion-copy">
+<p>Reemplaza este texto por el contenido de la sección.</p>
+</div>
+<img class="accordion-illustration" src="images/ciclo-phva.png" alt="Ciclo PHVA"></div>
+</div>
+</section>
+<section class="accordion-item">
+<h2 class="accordion-header" id="headingFive"><button class="accordion-button collapsed" type="button" aria-expanded="false" aria-controls="collapseFive"> Título de la pestaña 5 </button></h2>
+<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
+<div class="accordion-body">
+<div class="accordion-copy">
+<p>Reemplaza este texto por el contenido de la sección.</p>
+</div>
+<img class="accordion-illustration" src="images/protocolo.png" alt="Lista de verificación de un protocolo"></div>
+</div>
+</section>
+</main>
+<p><script>
+      document.querySelectorAll("#autocontrolAccordion .accordion-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+          document.querySelectorAll("#autocontrolAccordion .accordion-button").forEach((otherButton) => {
+            const panel = document.getElementById(otherButton.getAttribute("aria-controls"));
+            const shouldExpand = otherButton === button && !isExpanded;
+            otherButton.closest(".accordion-item").classList.toggle("is-expanded", shouldExpand);
+
+            otherButton.setAttribute("aria-expanded", String(shouldExpand));
+            otherButton.classList.toggle("collapsed", !shouldExpand);
+            panel.classList.toggle("show", shouldExpand);
+          });
+        });
+      });
+    </script></p></body></html>

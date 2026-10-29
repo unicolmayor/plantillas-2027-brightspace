@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "engram": {
+      "type": "stdio",
+      "command": "${workspaceFolder}\\.tools\\engram\\engram.exe",
+      "args": ["mcp"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "ENGRAM_DATA_DIR": "${workspaceFolder}\\.local\\engram"
+      }
+    }
+  }
+}

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dimensiones e indicadores clave en la valoración</title>
+    <style>
+      :root {
+        --step-blue: #07509f;
+        --step-yellow: #ffca19;
+        --step-background: #f2f2f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 28px 18px;
+        background: #fff;
+        color: var(--step-blue);
+        font-family: Arial, sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .steps-container {
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 24px 24px 20px;
+        overflow: hidden;
+        border-radius: 28px;
+        background: var(--step-background);
+      }
+
+      .steps-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 0 12px 16px;
+        border-bottom: 5px solid var(--step-yellow);
+      }
+
+      .steps-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0;
+        font-size: clamp(25px, 4vw, 38px);
+        font-weight: 700;
+        line-height: 1.05;
+      }
+
+      .steps-title-mark {
+        display: grid;
+        width: 1.3em;
+        height: 1.3em;
+        flex: 0 0 auto;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: 1.2em;
+        line-height: 1;
+      }
+
+      .steps-title-mark:focus-visible,
+      .credits-dialog-close:focus-visible,
+      .credits-dialog a:focus-visible {
+        outline: 3px solid #20458c;
+        outline-offset: 3px;
+      }
+
+      .credits-dialog {
+        width: min(1100px, calc(100% - 32px));
+        max-width: none;
+        max-height: min(90vh, 900px);
+        padding: 24px;
+        overflow: auto;
+        border: 0;
+        border-radius: 20px;
+        background: #fff;
+        color: #222;
+      }
+
+      .credits-dialog::backdrop {
+        background: rgb(0 0 0 / 55%);
+      }
+
+      .credits-dialog-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .credits-dialog-header h2 {
+        margin: 0;
+        color: var(--step-blue);
+        font-size: 30px;
+      }
+
+      .credits-dialog-close {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 2px solid #20458c;
+        border-radius: 50%;
+        background: #fff;
+        color: #20458c;
+        cursor: pointer;
+        font-size: 25px;
+        line-height: 1;
+      }
+
+      .credits-dialog-content {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+        gap: 24px;
+      }
+
+      .credits-section {
+        min-width: 0;
+        padding: 20px;
+        background: #fff;
+      }
+
+      .credits-section h3 {
+        margin: 0 0 16px;
+        color: #20458c;
+        font-size: 20px;
+      }
+
+      .credits-section h4 {
+        margin: 20px 0 10px;
+        color: #222;
+        font-size: 17px;
+      }
+
+      .credits-section h4:first-of-type {
+        margin-top: 0;
+      }
+
+      .credits-section p,
+      .credits-section li {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .credits-section p {
+        margin: 0 0 14px;
+      }
+
+      .credits-section p:last-child {
+        margin-bottom: 0;
+      }
+
+      .credits-references {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .credits-references li {
+        margin-bottom: 14px;
+        overflow-wrap: anywhere;
+      }
+
+      .credits-references li:last-child {
+        margin-bottom: 0;
+      }
+
+      .credits-dialog a {
+        color: #20458c;
+      }
+
+      @media (max-width: 700px) {
+        .credits-dialog {
+          padding: 16px;
+        }
+
+        .credits-dialog-content {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+        }
+      }
+
+      .steps-instruction {
+        flex: 0 0 215px;
+        margin: 0 8px 0 0;
+        padding: 10px 14px;
+        border: 2px solid var(--step-blue);
+        border-radius: 18px;
+        background: var(--step-yellow);
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .steps-instruction strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .step-tabs {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 80px), 1fr));
+        margin: 16px 0 20px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .step-tabs::before {
+        position: absolute;
+        top: 20px;
+        right: calc(50% / var(--step-count));
+        left: calc(50% / var(--step-count));
+        height: 5px;
+        background: repeating-linear-gradient(
+          to right,
+          var(--step-blue) 0 9px,
+          transparent 9px 16px
+        );
+        content: "";
+      }
+
+      .step-tab {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+
+      .step-tab-button {
+        display: flex;
+        width: 100%;
+        min-height: 92px;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 0 4px;
+        border: 0;
+        background: transparent;
+        color: var(--step-blue);
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .step-number {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 3px solid var(--step-blue);
+        border-radius: 9px;
+        background: var(--step-background);
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .step-label {
+        max-width: 130px;
+        font-size: 16px;
+        line-height: 1.1;
+      }
+
+      .step-tab-button[aria-selected="true"] .step-number {
+        border: 4px solid #fff;
+        background: var(--step-yellow);
+      }
+
+      .step-tab-button[aria-selected="true"] .step-label {
+        font-weight: 700;
+      }
+
+      .step-tab-button:focus-visible .step-number {
+        outline: 3px solid #111;
+        outline-offset: 3px;
+      }
+
+      .step-panel[hidden] {
+        display: none;
+      }
+
+      .step-layout {
+        display: grid;
+        min-height: 340px;
+        grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1.2fr);
+        align-items: center;
+        gap: 36px;
+        padding: 8px 42px;
+      }
+
+      .step-visual {
+        display: grid;
+        width: min(100%, 320px);
+        aspect-ratio: 1;
+        justify-self: center;
+        place-items: center;
+        overflow: hidden;
+        border: 10px solid #fff;
+        border-radius: 50%;
+        background: #dce7f1;
+        box-shadow: 0 9px 18px rgb(0 0 0 / 22%);
+      }
+
+      .step-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .step-visual svg {
+        width: 52%;
+        height: 52%;
+        fill: none;
+        stroke: var(--step-blue);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.5;
+      }
+
+      .step-copy {
+        font-size: 19px;
+        line-height: 1.42;
+        text-align: justify;
+      }
+
+      .step-copy p {
+        margin: 0 0 16px;
+      }
+
+      .step-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .step-copy strong {
+        font-weight: 700;
+      }
+
+      @media (max-width: 700px) {
+        body {
+          padding: 12px;
+        }
+
+        .steps-container {
+          padding: 18px 14px;
+          border-radius: 20px;
+        }
+
+        .steps-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+          padding: 0 4px 14px;
+        }
+
+        .steps-title {
+          gap: 8px;
+          font-size: clamp(24px, 7vw, 34px);
+        }
+
+        .steps-instruction {
+          flex-basis: auto;
+          margin: 0;
+          font-size: 14px;
+        }
+
+        .step-tabs {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          row-gap: 12px;
+          margin: 16px 0;
+        }
+
+        .step-tabs::before {
+          display: none;
+        }
+
+        .step-tab-button {
+          min-height: 76px;
+          gap: 5px;
+        }
+
+        .step-tab {
+          flex: 0 0 calc(100% / var(--mobile-columns));
+        }
+
+        .step-number {
+          width: 38px;
+          height: 38px;
+          font-size: 23px;
+        }
+
+        .step-label {
+          font-size: 13px;
+        }
+
+        .step-layout {
+          min-height: 0;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 20px;
+          padding: 8px 6px 0;
+        }
+
+        .step-visual {
+          width: min(72vw, 280px);
+        }
+
+        .step-copy {
+          font-size: 17px;
+          text-align: left;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <main class="steps-container">
+      <header class="steps-header">
+        <h1 class="steps-title"><button class="steps-title-mark" id="credits-dialog-trigger" type="button" aria-label="Abrir créditos y referencias" aria-haspopup="dialog" aria-controls="credits-dialog">☰</button>Dimensiones e indicadores clave en la valoración</h1>
+        <p class="steps-instruction"><strong>Instrucción:</strong>Haz clic en cada número para obtener más información.</p>
+      </header>
+
+      <dialog class="credits-dialog" id="credits-dialog" aria-labelledby="credits-dialog-title">
+        <div class="credits-dialog-header">
+          <h2 id="credits-dialog-title">Aspectos que componen el rol social en la persona mayor</h2>
+          <button class="credits-dialog-close" type="button" aria-label="Cerrar modal">×</button>
+        </div>
+        <div class="credits-dialog-content">
+          <section class="credits-section" aria-labelledby="credits-heading">
+            <h3 id="credits-heading">Créditos</h3>
+            <p><strong>Aspectos que componen el rol social en la persona mayor</strong></p>
+            <p><strong>Contenido temático desarrollado por:</strong><br>Ariel González Rodríguez</p>
+            <p><strong>Diseño y diagramación:</strong><br>Subdirección de Educación Virtual<br>Universidad Colegio Mayor de Cundinamarca</p>
+            <p>Versión 1.0<br>2025 © Todos los derechos reservados</p>
+          </section>
+          <section class="credits-section" aria-labelledby="references-heading">
+            <h3 id="references-heading">Referencias</h3>
+            <h4>Referencias bibliográficas</h4>
+            <ul class="credits-references">
+              <li>Kahana, E., y Kahana, B. (1971). Theoretical and Research Perspectives on Grandparenthood. <em>Aging and Human Development, 2</em>(4), 261-268.</li>
+              <li>Werner, P., Lowenstein, A., &amp; Katz, R. (1998). The meaning of grandparenthood: A critical review and research agenda. <em>Aging Clinical and Experimental Research, 10</em>(6), 431-439.</li>
+            </ul>
+            <h4>Referencias de imágenes incluidas en el recurso</h4>
+            <ul class="credits-references">
+              <li>Freepik. (2025). <a href="https://www.freepik.es/foto-gratis/cerrar-ganadores-bingo-interiores_20825620.htm" target="_blank" rel="noopener noreferrer">Cerrar los ganadores de bingo en interiores</a>. [Fotografía]. Licenciamiento premium.</li>
+              <li>Freepik. (2025). <a href="https://www.freepik.es/foto-gratis/senior-par-cocinar-juntos-cocina_44131178.htm" target="_blank" rel="noopener noreferrer">Senior par cocinar juntos en la cocina</a>. [Fotografía]. Licenciamiento premium.</li>
+              <li>Freepik. (2025). <a href="https://www.freepik.es/pikaso/ai-image-generator" target="_blank" rel="noopener noreferrer">Abuela llevando a su nieto al colegio</a>. [Imagen generada con IA]. Licenciamiento premium.</li>
+              <li>Freepik. (2025). <a href="https://www.freepik.es/foto-gratis/mediano-tiro-familia-feliz-casa_14120569.htm" target="_blank" rel="noopener noreferrer">Mediano tiro de familia feliz en casa</a>. [Fotografía]. Licenciamiento premium.</li>
+            </ul>
+          </section>
+        </div>
+      </dialog>
+
+      <div class="step-tabs" role="tablist" aria-label="Dimensiones de la valoración">
+        <div class="step-tab"><button class="step-tab-button" id="tab-1" type="button" role="tab" aria-selected="true" aria-controls="panel-1" tabindex="0"><span class="step-number">1</span><span class="step-label">Dimensión social</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-2" type="button" role="tab" aria-selected="false" aria-controls="panel-2" tabindex="-1"><span class="step-number">2</span><span class="step-label">Dimensión psicológica</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-3" type="button" role="tab" aria-selected="false" aria-controls="panel-3" tabindex="-1"><span class="step-number">3</span><span class="step-label">Dimensión biológica</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-4" type="button" role="tab" aria-selected="false" aria-controls="panel-4" tabindex="-1"><span class="step-number">4</span><span class="step-label">Dimensión económica</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-5" type="button" role="tab" aria-selected="false" aria-controls="panel-5" tabindex="-1"><span class="step-number">5</span><span class="step-label">Dimensión espiritual</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-6" type="button" role="tab" aria-selected="false" aria-controls="panel-6" tabindex="-1"><span class="step-number">6</span><span class="step-label">Vivienda y entorno físico</span></button></div>
+        <div class="step-tab"><button class="step-tab-button" id="tab-7" type="button" role="tab" aria-selected="false" aria-controls="panel-7" tabindex="-1"><span class="step-number">7</span><span class="step-label">Entorno familiar</span></button></div>
+      </div>
+
+      <section class="step-panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+        <div class="step-layout">
+          <div class="step-visual"><img src="images/dimension-social.png" alt="Personas mayores compartiendo en un entorno social"></div>
+          <div class="step-copy">
+            <p>La dimensión social considera los <strong>lazos, relaciones y redes de apoyo</strong> de la persona mayor. Incluye la convivencia, la calidad de las relaciones, la participación comunitaria y el acceso a recursos sociales.</p>
+            <p>Contar con vínculos de apoyo contribuye al bienestar y ayuda a detectar situaciones de aislamiento, exclusión o abuso.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual"><img src="images/dimension-psicologica.png" alt="Personas mayores activas y sonrientes"></div>
+          <div class="step-copy">
+            <p>La dimensión psicológica aborda el estado emocional y cognitivo, y su relación con el bienestar y la capacidad para afrontar los cambios asociados al envejecimiento.</p>
+            <p>Se consideran aspectos como el ánimo, la autoestima, la motivación, la memoria, la orientación y las funciones ejecutivas.</p>
+            <p><strong>Dato clave:</strong> La valoración oportuna ayuda a identificar necesidades de apoyo emocional y cognitivo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 84S16 64 16 39c0-18 22-26 34-9 12-17 34-9 34 9 0 25-34 45-34 45Z"/><path d="M24 52h15l7-15 10 28 8-13h12"/></svg></div>
+          <div class="step-copy"><p>La dimensión biológica revisa la salud física, las condiciones de movilidad y las necesidades de cuidado de la persona.</p><p>La valoración puede considerar enfermedades, tratamientos, nutrición, sueño, actividad física y capacidad para realizar las actividades cotidianas.</p></div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual" aria-hidden="true"><svg viewBox="0 0 100 100"><rect x="15" y="31" width="70" height="48" rx="7"/><path d="M15 44h70M27 31v-8h46v8M50 52v7m-9-4h18"/></svg></div>
+          <div class="step-copy"><p>La dimensión económica observa los ingresos, recursos y gastos disponibles para cubrir las necesidades y mantener la autonomía.</p><p>También permite identificar barreras económicas para acceder a alimentación, vivienda, servicios de salud y participación social.</p></div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="m50 13 9 25 27 1-21 16 8 26-23-15-23 15 8-26-21-16 27-1 9-25Z"/><circle cx="50" cy="54" r="9"/></svg></div>
+          <div class="step-copy"><p>La dimensión espiritual reconoce los valores, creencias, prácticas y fuentes de sentido que son importantes para cada persona.</p><p>Su valoración debe ser respetuosa de la diversidad y puede ayudar a reconocer recursos personales que favorecen el bienestar.</p></div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-6" role="tabpanel" aria-labelledby="tab-6" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="m12 48 38-31 38 31M22 43v41h56V43M42 84V58h16v26M31 52h9m20 0h9"/></svg></div>
+          <div class="step-copy"><p>La valoración del entorno físico y la vivienda revisa si el hogar es seguro, accesible y adecuado para las necesidades de la persona.</p><p>Se pueden observar obstáculos, iluminación, servicios básicos y disponibilidad de apoyos para prevenir accidentes y facilitar la vida diaria.</p></div>
+        </div>
+      </section>
+
+      <section class="step-panel" id="panel-7" role="tabpanel" aria-labelledby="tab-7" tabindex="0" hidden>
+        <div class="step-layout">
+          <div class="step-visual" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="31" r="13"/><circle cx="25" cy="42" r="10"/><circle cx="75" cy="42" r="10"/><path d="M27 79c1-17 9-26 23-26s22 9 23 26H27ZM8 77c1-13 6-20 17-20m67 20c-1-13-6-20-17-20"/></svg></div>
+          <div class="step-copy"><p>El entorno familiar permite conocer la convivencia, los vínculos y los apoyos disponibles en la familia o en la red cercana.</p><p>También es importante reconocer las necesidades de quienes brindan cuidado y promover relaciones basadas en el respeto y la corresponsabilidad.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const creditsDialog = document.querySelector("#credits-dialog");
+      const creditsDialogTrigger = document.querySelector("#credits-dialog-trigger");
+
+      creditsDialogTrigger.addEventListener("click", () => creditsDialog.showModal());
+      creditsDialog.querySelector(".credits-dialog-close").addEventListener("click", () => creditsDialog.close());
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && creditsDialog.open) {
+          creditsDialog.close();
+        }
+      });
+      creditsDialog.addEventListener("click", (event) => {
+        if (event.target === creditsDialog) {
+          creditsDialog.close();
+        }
+      });
+
+      const tabList = document.querySelector(".step-tabs");
+      const steps = [...tabList.querySelectorAll(".step-tab")].map((item) => {
+        const tab = item.querySelector(".step-tab-button");
+
+        return {
+          tab,
+          panel: tab ? document.getElementById(tab.getAttribute("aria-controls")) : null,
+        };
+      }).filter(({ tab, panel }) => tab && panel);
+      const tabs = steps.map(({ tab }) => tab);
+
+      function updateTabLayout() {
+        tabList.style.setProperty("--step-count", steps.length);
+        tabList.style.setProperty(
+          "--mobile-columns",
+          Math.min(steps.length, Math.max(1, Math.floor(tabList.clientWidth / 80)))
+        );
+      }
+
+      function selectStep(index, moveFocus = false) {
+        const selectedIndex = (index + steps.length) % steps.length;
+
+        steps.forEach(({ tab, panel }, stepIndex) => {
+          const isSelected = stepIndex === selectedIndex;
+          tab.setAttribute("aria-selected", String(isSelected));
+          tab.tabIndex = isSelected ? 0 : -1;
+          panel.hidden = !isSelected;
+        });
+
+        if (moveFocus) {
+          tabs[selectedIndex].focus();
+        }
+      }
+
+      steps.forEach(({ tab }, index) => {
+        tab.addEventListener("click", () => selectStep(index));
+        tab.addEventListener("keydown", (event) => {
+          const keyActions = {
+            ArrowRight: 1,
+            ArrowDown: 1,
+            ArrowLeft: -1,
+            ArrowUp: -1,
+            Home: -index,
+            End: steps.length - 1 - index,
+          };
+          const movement = keyActions[event.key];
+
+          if (movement !== undefined) {
+            event.preventDefault();
+            selectStep(index + movement, true);
+          }
+        });
+      });
+
+      updateTabLayout();
+      window.addEventListener("resize", updateTabLayout);
+
+      if (steps.length > 0) {
+        const selectedIndex = steps.findIndex(({ tab }) => tab.getAttribute("aria-selected") === "true");
+        selectStep(Math.max(0, selectedIndex));
+      }
+    </script>
+  </body>
+</html>

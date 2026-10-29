@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/css/bootstrap.min.css">
+   <!-- Font Awesome CSS -->
+   <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/fontawesome-free-5.9.0-web/css/all.min.css">
+   <!-- Template CSS -->
+   <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/styles.min.css">
+   <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/custom.css">
+   <title>Acordeón</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --unimayor-primary: #233a83;
+    --unimayor-secondary: #ffcf02;
+    --unimayor-surface: #f4f6fb;
+    --unimayor-border: #d7deee;
+  }
+
+  body {
+    font-family: "Roboto", Arial, sans-serif;
+    color: var(--unimayor-primary);
+  }
+
+  p:not(.small) {
+    font-size: 20px;
+  }
+
+  body .container-fluid h1,
+  body .container-fluid h2,
+  body .container-fluid .h1,
+  body .container-fluid .h2 {
+    font-size: 30px !important;
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid h1 {
+    padding-bottom: 0.3em;
+    border-bottom: 4px solid var(--unimayor-secondary);
+  }
+
+  body .container-fluid h3 {
+    padding-bottom: 0.35em;
+    border-bottom: 2px solid var(--unimayor-secondary);
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid h4 {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid a,
+  body .container-fluid a:hover,
+  body .container-fluid a:focus-visible {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid li,
+  body .container-fluid li::marker,
+  body .container-fluid ol.large-number li::before {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid blockquote {
+    padding: 1.25rem 1.5rem;
+    border-left: 5px solid var(--unimayor-primary);
+    border-radius: 0 10px 10px 0;
+    background: var(--unimayor-surface);
+  }
+
+  body .container-fluid blockquote p {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .jumbotron {
+    border-left: 6px solid var(--unimayor-primary);
+    border-radius: 12px;
+    background-color: var(--unimayor-secondary);
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .jumbotron p {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .card {
+    overflow: hidden;
+    border: 0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgb(35 58 131 / 8%);
+  }
+
+  body .container-fluid .card-header {
+    border: 0;
+    background: var(--unimayor-surface);
+    text-align: center;
+  }
+
+  body .container-fluid .card-standard,
+  body .container-fluid .card-graphic {
+    border-radius: 12px;
+  }
+
+  body .container-fluid .card-standard {
+    border: 2px solid var(--unimayor-primary);
+    background: var(--unimayor-surface);
+  }
+
+  body .container-fluid .card-graphic {
+    border: 2px solid var(--unimayor-secondary);
+    background: #fffaf0;
+  }
+
+  body .container-fluid .card-graphic .card-icon {
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .stacked-panels .card,
+  body .container-fluid .two-col-panels .card {
+    border-top: 4px solid var(--unimayor-secondary);
+  }
+
+  body .container-fluid .accordion .card {
+    margin-bottom: 0.75rem;
+  }
+
+  body .container-fluid .accordion .card-title {
+    margin: 0;
+  }
+
+  body .container-fluid .accordion .card-header .btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--unimayor-primary);
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+  }
+
+  body .container-fluid .accordion .card-header .btn::after {
+    display: none;
+  }
+
+  body .container-fluid .accordion .card-header .btn:hover,
+  body .container-fluid .accordion .card-header .btn:focus-visible {
+    background-color: var(--unimayor-primary);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  body .container-fluid .accordion .card-header .btn[aria-expanded="true"],
+  body .container-fluid .accordion .card-header .btn[aria-expanded="true"]:hover,
+  body .container-fluid .accordion .card-header .btn[aria-expanded="true"]:focus-visible {
+    background-color: var(--unimayor-secondary);
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .accordion .card-body {
+    border-top: 1px solid var(--unimayor-border);
+    background: #fff;
+  }
+
+  body .container-fluid .table-responsive {
+    overflow-x: auto;
+    border-radius: 10px;
+  }
+
+  body .container-fluid .table-bordered,
+  body .container-fluid .table-bordered th,
+  body .container-fluid .table-bordered td {
+    border-color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .table-bordered thead th {
+    background-color: var(--unimayor-primary);
+    color: #fff;
+  }
+
+  body .container-fluid .table-bordered tbody tr:nth-child(even) {
+    background-color: var(--unimayor-surface);
+  }
+
+  body .container-fluid .table-bordered tbody tr:hover {
+    background-color: #fff8d9;
+  }
+
+  body .container-fluid .tabs-wrapper .list-group-item {
+    border-color: var(--unimayor-border);
+    background-color: var(--unimayor-surface);
+    color: var(--unimayor-primary);
+  }
+
+  body .container-fluid .list-group-item.active,
+  body .container-fluid .list-group-item.active:hover,
+  body .container-fluid .list-group-item.active:focus {
+    border-color: var(--unimayor-primary);
+    border-bottom: 3px solid var(--unimayor-secondary);
+    background-color: var(--unimayor-primary);
+    color: #fff;
+  }
+
+  body .container-fluid .tabs-wrapper .tab-content {
+    padding: 1.25rem;
+    border: 1px solid var(--unimayor-border);
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    background: #fff;
+  }
+
+  body .container-fluid .tabs-wrapper .tab-pane p:last-child {
+    margin-bottom: 0;
+  }
+
+  body .container-fluid .tabs-wrapper .list-group-item:focus-visible,
+  body .container-fluid .accordion .card-header .btn:focus-visible {
+    outline: 3px solid var(--unimayor-primary);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 575.98px) {
+    body .container-fluid .tabs-wrapper .list-group-item {
+      padding: 0.65rem 0.45rem;
+    }
+
+    body .container-fluid .tabs-wrapper .tab-content {
+      padding: 1rem;
+    }
+  }
+
+</style>
+</head><body><div class="container-fluid">
+<div class="row">
+<div class="col-12 banner-img">
+<p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/banner-plantillas.jpg" alt="Imagen de banner"></p>
+</div>
+<div class="col-sm-10 offset-sm-1">
+<h1>Acordeón</h1>
+<p>Los acordeones son útiles para presentar una lista de temas relacionados. Cuando cada tema contiene mucha información, permiten mostrar primero la lista y dejar que cada persona abra los apartados para profundizar.</p>
+<p><strong>Para copiar acordeones en otra página, asegúrate de que esté en modo «Edición».</strong></p>
+<h2>Acordeón individual</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Título del acordeón</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+<h2>Acordeón: grupo de 2</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 1 de 2</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 1 de 2.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 2 de 2</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 2 de 2.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+<h2>Acordeón: grupo de 3</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 1 de 3</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 1 de 3.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 2 de 3</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 2 de 3.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 3 de 3</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 3 de 3.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+<h2>Acordeón: grupo de 4</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 1 de 4</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 1 de 4.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 2 de 4</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 2 de 4.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 3 de 4</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 3 de 4.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 4 de 4</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 4 de 4.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+<h2>Acordeón: grupo de 5</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 1 de 5</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 1 de 5.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 2 de 5</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 2 de 5.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 3 de 5</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 3 de 5.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 4 de 5</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 4 de 5.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 5 de 5</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 5 de 5.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+<h2>Acordeón: grupo de 6</h2>
+<p class="small">Acordeón: inicio de copia</p>
+<!-- Accordion headings should be changed to respect page hierarchy -->
+<div class="accordion">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 1 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 1 de 6.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 2 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 2 de 6.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 3 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 3 de 6.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 4 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 4 de 6.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 5 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 5 de 6.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Acordeón 6 de 6</h2>
+</div>
+<div class="collapse">
+<div class="card-body">
+<p>Inserta aquí el contenido del acordeón 6 de 6.</p>
+</div>
+</div>
+</div>
+</div>
+<p class="small">Acordeón: fin de copia</p>
+</div>
+<div class="col-12"><footer>
+<p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p>
+</footer></div>
+</div>
+</div>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/jquery/jquery-3.3.1.slim.min.js"></script>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/popper-js/popper.min.js"></script>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+<!-- Template JavaScript -->
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/js/scripts.min.js"></script></body></html>

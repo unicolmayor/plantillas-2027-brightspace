@@ -1,0 +1,21 @@
+{
+  "name": "plantillas",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "openspec": "node ./node_modules/@fission-ai/openspec/bin/openspec.js",
+    "engram:install": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-engram.ps1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@fission-ai/openspec": "1.15.0"
+  }
+}
