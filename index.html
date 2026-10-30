@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Plantillas Brightspace Universidad Mayor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --unimayor-primary: #233a83;
+      --unimayor-secondary: #ffcf02;
+      --unimayor-surface: #f4f6fb;
+      --unimayor-border: #d7deee;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--unimayor-surface);
+      color: #26324d;
+      font-family: "Roboto", Arial, sans-serif;
+    }
+
+    .catalog-header {
+      background: var(--unimayor-primary);
+      color: #fff;
+      text-align: center;
+      padding: 48px 24px 42px;
+      border-bottom: 8px solid var(--unimayor-secondary);
+    }
+
+    .catalog-header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.1;
+    }
+
+    .catalog-header p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 20px;
+      opacity: 0.95;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 40px auto 64px;
+    }
+
+    .catalog-section + .catalog-section {
+      margin-top: 40px;
+    }
+
+    .catalog-section h2 {
+      margin: 0 0 18px;
+      color: var(--unimayor-primary);
+      font-size: 30px;
+    }
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .template-link {
+      display: flex;
+      min-height: 92px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px;
+      border: 2px solid var(--var-border, var(--unimayor-border));
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgb(35 58 131 / 8%);
+      color: var(--unimayor-primary);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .template-link::after {
+      content: "\2192";
+      flex: 0 0 auto;
+      color: var(--unimayor-primary);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .template-link:hover,
+    .template-link:focus-visible {
+      border-color: var(--unimayor-secondary);
+      box-shadow: 0 8px 20px rgb(35 58 131 / 15%);
+      transform: translateY(-2px);
+    }
+
+    .template-link:focus-visible {
+      outline: 3px solid var(--unimayor-primary);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 900px) {
+      .template-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .catalog-header {
+        padding: 36px 20px 32px;
+      }
+
+      main {
+        width: min(100% - 24px, 1180px);
+        margin-top: 28px;
+      }
+
+      .template-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="catalog-header">
+    <h1>Plantillas Brightspace</h1>
+    <p>Catálogo de plantillas Universidad Mayor para cursos en Brightspace.</p>
+  </header>
+
+  <main>
+    <section class="catalog-section" aria-labelledby="templates-2027">
+      <h2 id="templates-2027">Plantillas 2027</h2>
+      <div class="template-grid">
+        <a class="template-link" href="2027_blank.html">Página en blanco</a>
+        <a class="template-link" href="2027_intro.html">Introducción</a>
+        <a class="template-link" href="2027_module_intro.html">Introducción al módulo</a>
+        <a class="template-link" href="2027_meet_your_facilitator.html">Conoce a tu facilitador</a>
+        <a class="template-link" href="2027_basic_page.html">Página básica</a>
+        <a class="template-link" href="2027_video_lecture.html">Clase en video</a>
+        <a class="template-link" href="2027_conclusion.html">Conclusión</a>
+        <a class="template-link" href="2027_elements.html">Elementos de página</a>
+        <a class="template-link" href="2027_images.html">Ejemplos de imágenes</a>
+        <a class="template-link" href="2027_accordions.html">Acordeones</a>
+        <a class="template-link" href="2027_tabs.html">Pestañas</a>
+        <a class="template-link" href="2027_test.html">Prueba</a>
+      </div>
+    </section>
+
+    <section class="catalog-section" aria-labelledby="templates-base">
+      <h2 id="templates-base">Plantillas numeradas</h2>
+      <div class="template-grid">
+        <a class="template-link" href="00_blank.html">Página en blanco</a>
+        <a class="template-link" href="01_intro.html">Introducción</a>
+        <a class="template-link" href="02_module_intro.html">Introducción al módulo</a>
+        <a class="template-link" href="03_meet_your_facilitator.html">Conoce a tu facilitador</a>
+        <a class="template-link" href="04_basic_page.html">Página básica</a>
+        <a class="template-link" href="05_video_lecture.html">Clase en video</a>
+        <a class="template-link" href="06_conclusion.html">Conclusión</a>
+        <a class="template-link" href="07_elements.html">Elementos de página</a>
+        <a class="template-link" href="08_images.html">Ejemplos de imágenes</a>
+        <a class="template-link" href="09_accordions.html">Acordeones</a>
+        <a class="template-link" href="10_tabs.html">Pestañas</a>
+      </div>
+    </section>
+
+    <section class="catalog-section" aria-labelledby="templates-integrated">
+      <h2 id="templates-integrated">Plantillas integradas y ejemplos</h2>
+      <div class="template-grid">
+        <a class="template-link" href="slides.html">Presentación integrada</a>
+        <a class="template-link" href="accordions.html">Ejemplo de acordeones</a>
+        <a class="template-link" href="tabs.html">Ejemplo de pestañas</a>
+        <a class="template-link" href="tabs_steps.html">Pestañas por pasos</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

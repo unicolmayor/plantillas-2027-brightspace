@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Presentación integrada</title>
+  <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/fontawesome-free-5.9.0-web/css/all.min.css">
+  <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/styles.min.css">
+  <link rel="stylesheet" href="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --unimayor-primary: #233a83;
+      --unimayor-secondary: #ffcf02;
+      --unimayor-surface: #f4f6fb;
+      --unimayor-border: #d7deee;
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: "Roboto", Arial, sans-serif;
+      color: var(--unimayor-primary);
+    }
+
+    .slides-presentation {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .slides-presentation p:not(.small) {
+      font-size: 20px;
+    }
+
+    .slides-presentation h1,
+    .slides-presentation h2 {
+      color: var(--unimayor-primary);
+      font-size: 30px !important;
+    }
+
+    .slides-presentation h1 {
+      padding-bottom: 0.3em;
+      border-bottom: 4px solid var(--unimayor-secondary);
+    }
+
+    .slides-presentation h3 {
+      padding-bottom: 0.35em;
+      border-bottom: 2px solid var(--unimayor-secondary);
+      color: var(--unimayor-primary);
+    }
+
+    .slides-presentation a,
+    .slides-presentation a:hover,
+    .slides-presentation a:focus-visible {
+      color: var(--unimayor-primary);
+    }
+
+    .slides-presentation li,
+    .slides-presentation li::marker {
+      color: var(--unimayor-primary);
+    }
+
+    .slides-presentation .card {
+      overflow: hidden;
+      border: 1px solid var(--unimayor-border);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgb(35 58 131 / 8%);
+    }
+
+    .slides-presentation .card-header {
+      border-left: 5px solid var(--unimayor-secondary);
+      background: var(--unimayor-surface);
+    }
+
+    .slides-presentation .card-standard {
+      border: 2px solid var(--unimayor-primary);
+      border-radius: 12px;
+      background: var(--unimayor-surface);
+    }
+
+    .slides-presentation .card-graphic {
+      border: 2px solid var(--unimayor-secondary);
+      border-radius: 12px;
+      background: #fffaf0;
+    }
+
+    .slides-presentation .card-graphic .card-icon {
+      color: var(--unimayor-primary);
+    }
+
+    .slides-presentation .stacked-panels .card,
+    .slides-presentation .two-col-panels .card {
+      border-top: 4px solid var(--unimayor-secondary);
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.is-active {
+      display: block;
+      animation: slide-reveal 180ms ease-out;
+    }
+
+    @keyframes slide-reveal {
+      from { opacity: 0.55; transform: translateX(8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .slide-footer {
+      width: 100%;
+      text-align: left;
+    }
+
+    .slide-footer p {
+      margin: 0;
+      font-size: inherit !important;
+    }
+
+    .slide-footer img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .slides-nav {
+      position: fixed;
+      z-index: 1030;
+      top: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      padding: 0;
+      border: 3px solid var(--unimayor-secondary);
+      border-radius: 50%;
+      background: var(--unimayor-primary);
+      box-shadow: 0 4px 12px rgb(35 58 131 / 20%);
+      color: #fff;
+      font-size: 22px;
+      transform: translateY(-50%);
+    }
+
+    .slides-nav:hover,
+    .slides-nav:focus-visible {
+      background: var(--unimayor-secondary);
+      color: var(--unimayor-primary);
+    }
+
+    .slides-nav:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .slides-nav:disabled {
+      cursor: default;
+      opacity: 0.45;
+    }
+
+    .slides-nav[hidden] {
+      display: none;
+    }
+
+    .slides-nav-prev {
+      left: 12px;
+    }
+
+    .slides-nav-next {
+      right: 12px;
+    }
+
+    .slides-nav svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 3;
+    }
+
+    .slides-presentation .tabs-wrapper .list-group-item {
+      border-color: var(--unimayor-border);
+      background-color: var(--unimayor-surface);
+      color: var(--unimayor-primary);
+      cursor: pointer;
+    }
+
+    .slides-presentation .list-group-item.active,
+    .slides-presentation .list-group-item.active:hover,
+    .slides-presentation .list-group-item.active:focus {
+      border-color: var(--unimayor-primary);
+      border-bottom: 3px solid var(--unimayor-secondary);
+      background-color: var(--unimayor-primary);
+      color: #fff;
+    }
+
+    .slides-presentation .tabs-wrapper .tab-content {
+      padding: 1.25rem;
+      border: 1px solid var(--unimayor-border);
+      border-top: 0;
+      border-radius: 0 0 10px 10px;
+      background: #fff;
+    }
+
+    .slides-presentation .tabs-wrapper .tab-pane p:last-child {
+      margin-bottom: 0;
+    }
+
+    .slides-presentation .tabs-wrapper .list-group-item:focus-visible {
+      outline: 3px solid var(--unimayor-primary);
+      outline-offset: 2px;
+      z-index: 2;
+    }
+
+    @media (max-width: 575.98px) {
+      .slides-presentation p:not(.small) {
+        font-size: 18px;
+      }
+
+      .slides-presentation h1,
+      .slides-presentation h2 {
+        font-size: 26px !important;
+      }
+
+      .slides-nav {
+        top: auto;
+        bottom: 16px;
+        width: 46px;
+        height: 46px;
+      }
+
+      .slides-nav-prev {
+        left: 16px;
+      }
+
+      .slides-nav-next {
+        right: 16px;
+      }
+
+      .slides-presentation .tabs-wrapper .list-group-item {
+        padding: 0.65rem 0.45rem;
+      }
+
+      .slides-presentation .tabs-wrapper .tab-content {
+        padding: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide.is-active {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="slides-presentation" aria-live="polite">
+  <section class="slide is-active" id="slide-intro" data-slide="intro" aria-label="Introducción">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="fullscreen-splash overlay-reveal bg-img-wrapper">
+            <p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/banner-plantillas.jpg" alt=""></p>
+            <div class="row">
+              <div class="offset-md-2 col-md-8">
+                <div class="overlay-content pb-5 pr-5 pl-5">
+                  <h1>Título del curso</h1>
+                  <hr>
+                  <p>Esta página presenta una imagen a pantalla completa para generar impacto visual y un espacio limpio para describir el curso, ideal para una página de introducción.</p>
+                  <p>Recomendamos limitar la cantidad de texto de esta página. Además, utiliza una imagen de al menos 1200 píxeles de ancho por 600 píxeles de alto.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 slide-footer"><footer><p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p></footer></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-basic-page" data-slide="basic-page" aria-label="Página básica" hidden>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 banner-img">
+          <p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/banner-plantillas.jpg" alt="Imagen de banner"></p>
+        </div>
+        <div class="col-sm-10 offset-sm-1">
+          <h1>Página básica</h1>
+          <p>Esta página básica es una plantilla de uso general.</p>
+          <h2>Edición sencilla con el editor HTML</h2>
+          <p>Puedes utilizar el editor HTML para hacer cambios de forma rápida y sencilla, sin conocimientos previos de HTML. Escribe el contenido y utiliza los controles disponibles para darle formato al texto.</p>
+          <h3>Copiar texto</h3>
+          <p>Consejo: al redactar, es recomendable escribir primero el contenido en un documento, como Microsoft Word. Así, las personas involucradas pueden colaborar y hacer seguimiento a los cambios. También es más fácil detectar errores ortográficos y gramaticales desde el principio.</p>
+          <p>Al pegar texto desde Word en el editor HTML, también se pueden copiar algunos estilos del documento. Estos pueden entrar en conflicto con los estilos de esta plantilla. Por eso, recomendamos pegar el texto sin formato.</p>
+          <div class="card card-graphic">
+            <div class="card-body">
+              <div class="card-icon"><span class="fas fa-exclamation"></span></div>
+              <div class="card-text"><p>Para pegar texto sin formato, usa Ctrl+Mayús+V (Cmd+Mayús+V en Mac). Así, el contenido se pegará sin formato en el editor HTML.</p></div>
+            </div>
+          </div>
+          <p>Para obtener ayuda con la edición básica, consulta la ayuda de Brightspace: <a href="https://documentation.brightspace.com/EN/le/html_editor/instructor/html_editor_intro.htm?tocpath=Instructors%7CSet%20up%20and%20deliver%20a%20course%7CCreate%20course%20content%7CFormat%20HTML%20course%20content%7C_____0" target="_blank" rel="noopener">Dar formato al contenido del curso en HTML.<span class="sr-only">(este enlace se abre en una ventana o pestaña nueva)</span></a></p>
+        </div>
+        <div class="col-12 slide-footer"><footer><p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p></footer></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-tabs" data-slide="tabs" aria-label="Pestañas" hidden>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 banner-img">
+          <p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/banner-plantillas.jpg" alt="Imagen de banner"></p>
+        </div>
+        <div class="col-sm-10 offset-sm-1">
+          <h1>Pestañas</h1>
+          <h2>Buenas prácticas</h2>
+          <p>Las pestañas son útiles para desarrollar una idea organizada en categorías o secciones con una estructura común. Por ejemplo, pueden presentar una serie de estudios, cada uno con su hipótesis, método y resultados. Funcionan especialmente bien cuando el contenido de una pestaña se apoya en el de la anterior, como en ese ejemplo.</p>
+          <p><strong>Para copiar pestañas en otra página, asegúrate de que esté en modo «Edición».</strong></p>
+
+          <h2>Pestañas: grupo de 2</h2>
+          <p class="small">Pestañas horizontales: inicio de copia</p>
+          <div class="tabs-wrapper tabs-horizontal" data-tabs="group-2">
+            <div class="row">
+              <div class="col-12">
+                <div class="list-group flex-md-row text-center" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="tabs-2-control-1" href="#tabs-2-panel-1" data-toggle="list" role="tab" aria-controls="tabs-2-panel-1" aria-selected="true">Pestaña horizontal 1 de 2</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-2-control-2" href="#tabs-2-panel-2" data-toggle="list" role="tab" aria-controls="tabs-2-panel-2" aria-selected="false">Pestaña horizontal 2 de 2</a>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="tabs-2-panel-1" role="tabpanel" aria-labelledby="tabs-2-control-1" tabindex="0"><p>Contenido de la pestaña horizontal 1 de 2</p></div>
+                  <div class="tab-pane fade" id="tabs-2-panel-2" role="tabpanel" aria-labelledby="tabs-2-control-2" tabindex="0"><p>Contenido de la pestaña horizontal 2 de 2</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="small">Pestañas horizontales: fin de copia</p>
+
+          <h2>Pestañas: grupo de 3</h2>
+          <p class="small">Pestañas horizontales: inicio de copia</p>
+          <div class="tabs-wrapper tabs-horizontal" data-tabs="group-3">
+            <div class="row">
+              <div class="col-12">
+                <div class="list-group flex-md-row text-center" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="tabs-3-control-1" href="#tabs-3-panel-1" data-toggle="list" role="tab" aria-controls="tabs-3-panel-1" aria-selected="true">Pestaña horizontal 1 de 3</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-3-control-2" href="#tabs-3-panel-2" data-toggle="list" role="tab" aria-controls="tabs-3-panel-2" aria-selected="false">Pestaña horizontal 2 de 3</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-3-control-3" href="#tabs-3-panel-3" data-toggle="list" role="tab" aria-controls="tabs-3-panel-3" aria-selected="false">Pestaña horizontal 3 de 3</a>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="tabs-3-panel-1" role="tabpanel" aria-labelledby="tabs-3-control-1" tabindex="0"><p>Contenido de la pestaña horizontal 1 de 3</p></div>
+                  <div class="tab-pane fade" id="tabs-3-panel-2" role="tabpanel" aria-labelledby="tabs-3-control-2" tabindex="0"><p>Contenido de la pestaña horizontal 2 de 3</p></div>
+                  <div class="tab-pane fade" id="tabs-3-panel-3" role="tabpanel" aria-labelledby="tabs-3-control-3" tabindex="0"><p>Contenido de la pestaña horizontal 3 de 3</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="small">Pestañas horizontales: fin de copia</p>
+
+          <h2>Pestañas: grupo de 4</h2>
+          <p class="small">Pestañas horizontales: inicio de copia</p>
+          <div class="tabs-wrapper tabs-horizontal" data-tabs="group-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="list-group flex-md-row text-center" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="tabs-4-control-1" href="#tabs-4-panel-1" data-toggle="list" role="tab" aria-controls="tabs-4-panel-1" aria-selected="true">Pestaña horizontal 1</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-4-control-2" href="#tabs-4-panel-2" data-toggle="list" role="tab" aria-controls="tabs-4-panel-2" aria-selected="false">Pestaña horizontal 2</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-4-control-3" href="#tabs-4-panel-3" data-toggle="list" role="tab" aria-controls="tabs-4-panel-3" aria-selected="false">Pestaña horizontal 3</a>
+                  <a class="list-group-item list-group-item-action" id="tabs-4-control-4" href="#tabs-4-panel-4" data-toggle="list" role="tab" aria-controls="tabs-4-panel-4" aria-selected="false">Pestaña horizontal 4</a>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="tabs-4-panel-1" role="tabpanel" aria-labelledby="tabs-4-control-1" tabindex="0"><p>Contenido de la pestaña horizontal 1 de 4</p></div>
+                  <div class="tab-pane fade" id="tabs-4-panel-2" role="tabpanel" aria-labelledby="tabs-4-control-2" tabindex="0"><p>Contenido de la pestaña horizontal 2 de 4</p></div>
+                  <div class="tab-pane fade" id="tabs-4-panel-3" role="tabpanel" aria-labelledby="tabs-4-control-3" tabindex="0"><p>Contenido de la pestaña horizontal 3 de 4</p></div>
+                  <div class="tab-pane fade" id="tabs-4-panel-4" role="tabpanel" aria-labelledby="tabs-4-control-4" tabindex="0"><p>Contenido de la pestaña horizontal 4 de 4</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="small">Pestañas horizontales: fin de copia</p>
+        </div>
+        <div class="col-12 slide-footer"><footer><p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p></footer></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-conclusion" data-slide="conclusion" aria-label="Conclusión" hidden>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 banner-img">
+          <p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/banner-plantillas.jpg" alt="Imagen de banner"></p>
+        </div>
+        <div class="col-sm-10 offset-sm-1">
+          <h1>Conclusión</h1>
+          <hr>
+          <p>Aunque esta página de conclusión puede utilizarse con distintos propósitos, es ideal para cerrar cada módulo. Mantener un diseño coherente ayuda a indicar a los participantes que han llegado al final de una parte del curso.</p>
+          <div class="stacked-panels row">
+            <div class="card bg-light col-12">
+              <div class="card-body">
+                <h2>Próximos pasos</h2>
+                <p>Para que el contenido sea accesible para todas las personas y cumpla con las pautas WCAG 2, ejecuta el <a href="https://community.brightspace.com/s/article/Brightspace-Accessibility-Checker" target="_blank" rel="noopener">comprobador de accesibilidad de Brightspace<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a> en cada página que crees. En el modo de edición, selecciona «Comprobar accesibilidad». La herramienta indicará si hay problemas de accesibilidad y ofrecerá sugerencias para corregirlos.</p>
+                <p>¡Esperamos que disfrutes esta plantilla y gracias por utilizar Brightspace!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 slide-footer"><footer><p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p></footer></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-facilitator" data-slide="facilitator" aria-label="Facilitador" hidden>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 bg-light pt-5 pb-5">
+          <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1 col-md-6">
+              <h1>Conoce a tu facilitador</h1>
+              <h2>Perfil del facilitador</h2>
+              <p>La página «Conoce a tu facilitador» puede tener distintos propósitos. Es un espacio ideal para presentar tu formación, experiencia y personalidad.</p>
+              <p>Tamaño recomendado para la imagen: al menos 600 píxeles de ancho.</p>
+              <h3>Información de contacto</h3>
+              <p>Correo electrónico: <a href="mailto:first.last.@email.com">first.last.@email.com</a></p>
+              <p>Teléfono: (000)000-0000</p>
+              <p>Horario de atención: 8:00 a. m. - 5:00 p. m.</p>
+            </div>
+            <div class="col-8 offset-2 col-sm-4 offset-sm-4 offset-md-0">
+              <figure class="figure-alt">
+                <p><img src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/img/instructor.jpg" alt="Facilitador"></p>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 slide-footer"><footer><p><img src="https://virtual.universidadmayor.edu.co/shared/Themes%20Images/sevi-saludo.png" alt="Sevi saludo"></p></footer></div>
+      </div>
+    </div>
+  </section>
+
+  <button class="slides-nav slides-nav-prev" type="button" aria-label="Diapositiva anterior" aria-controls="slide-intro slide-basic-page slide-tabs slide-conclusion slide-facilitator" disabled>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 18 9 12l6-6"></path></svg>
+  </button>
+  <button class="slides-nav slides-nav-next" type="button" aria-label="Diapositiva siguiente" aria-controls="slide-intro slide-basic-page slide-tabs slide-conclusion slide-facilitator">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"></path></svg>
+  </button>
+</main>
+
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/jquery/jquery-3.3.1.slim.min.js"></script>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/popper-js/popper.min.js"></script>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+<script src="https://virtual.universidadmayor.edu.co/shared/HTML-Template-Library/HTML-Templates-V3/_assets/js/scripts.min.js"></script>
+<script>
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+    var previousButton = document.querySelector(".slides-nav-prev");
+    var nextButton = document.querySelector(".slides-nav-next");
+    var presentation = document.querySelector(".slides-presentation");
+    var currentIndex = 0;
+    var touchStartX = 0;
+    var touchStartY = 0;
+
+    function getIndexFromHash() {
+      var hashIndex = slides.findIndex(function (slide) {
+        return "#" + slide.id === window.location.hash;
+      });
+      return hashIndex >= 0 ? hashIndex : currentIndex;
+    }
+
+    function showSlide(index, updateHash) {
+      if (index < 0 || index >= slides.length) {
+        return;
+      }
+
+      currentIndex = index;
+      slides.forEach(function (slide, slideIndex) {
+        var active = slideIndex === currentIndex;
+        slide.classList.toggle("is-active", active);
+        slide.hidden = !active;
+        slide.setAttribute("aria-hidden", String(!active));
+      });
+
+      previousButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+      previousButton.hidden = previousButton.disabled;
+      nextButton.hidden = nextButton.disabled;
+      previousButton.setAttribute("aria-disabled", String(previousButton.disabled));
+      nextButton.setAttribute("aria-disabled", String(nextButton.disabled));
+
+      if (updateHash) {
+        window.history.replaceState(null, "", "#" + slides[currentIndex].id);
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    previousButton.addEventListener("click", function () {
+      showSlide(currentIndex - 1, true);
+    });
+
+    nextButton.addEventListener("click", function () {
+      showSlide(currentIndex + 1, true);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      var target = event.target;
+      var isEditing = target.matches("input, textarea, select, [contenteditable='true']");
+      if (isEditing) {
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showSlide(currentIndex - 1, true);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showSlide(currentIndex + 1, true);
+      }
+    });
+
+    presentation.addEventListener("touchstart", function (event) {
+      if (!event.changedTouches.length) {
+        return;
+      }
+      touchStartX = event.changedTouches[0].clientX;
+      touchStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+
+    presentation.addEventListener("touchend", function (event) {
+      if (!event.changedTouches.length) {
+        return;
+      }
+
+      var deltaX = event.changedTouches[0].clientX - touchStartX;
+      var deltaY = event.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+        return;
+      }
+
+      showSlide(currentIndex + (deltaX < 0 ? 1 : -1), true);
+    }, { passive: true });
+
+    window.addEventListener("hashchange", function () {
+      showSlide(getIndexFromHash(), false);
+    });
+
+    document.querySelectorAll('.tabs-wrapper [data-toggle="list"]').forEach(function (tab) {
+      tab.addEventListener("shown.bs.tab", function () {
+        this.setAttribute("aria-selected", "true");
+      });
+      tab.addEventListener("hidden.bs.tab", function () {
+        this.setAttribute("aria-selected", "false");
+      });
+    });
+
+    showSlide(getIndexFromHash(), true);
+  }());
+</script>
+</body>
+</html>
