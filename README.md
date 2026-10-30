@@ -1,34 +1,94 @@
-# Plantillas Brightspace
+# Plantillas Brightspace Universidad Mayor
 
-Proyecto de plantillas HTML con OpenSpec y Engram configurados para trabajar de
-forma local en esta carpeta.
+Repositorio de plantillas HTML adaptables para el diseño de cursos en
+Brightspace. Las plantillas usan la identidad visual de Universidad Mayor y
+recursos institucionales compartidos.
 
-## Preparacion
+## Vista previa
 
-1. Instala las dependencias del proyecto con `npm install`. OpenSpec queda
-   instalado en `node_modules`, sin instalacion global.
-2. Instala Engram con `npm run engram:install`. El script descarga la version
-   oficial fijada, verifica su SHA-256 y guarda el ejecutable en `.tools/engram`.
-3. Abre o vuelve a cargar esta carpeta en VS Code para iniciar el servidor MCP
-   Engram configurado en `.vscode/mcp.json`.
+Abre `index.html` desde un servidor local para consultar todas las plantillas.
+Por ejemplo, desde PowerShell en la raíz del repositorio:
 
-No se requiere Go. Para verificar OpenSpec en PowerShell ejecuta
-`npm.cmd run openspec -- --version`.
+```powershell
+python -m http.server 4173
+```
+
+Luego visita `http://localhost:4173/index.html`.
+
+## Plantillas disponibles
+
+- Plantillas numeradas de `00_blank.html` a `10_tabs.html`.
+- Variantes `2027_*` de las plantillas principales.
+- `slides.html`, una plantilla monolítica que reúne introducción, contenido,
+  pestañas, conclusión y facilitador sin usar `iframe`.
+- Ejemplos adicionales de acordeones, pestañas y pestañas por pasos.
+
+Cada enlace del catálogo abre su plantilla correspondiente.
+
+## Presentación integrada
+
+La plantilla `slides.html` permite recorrer las cinco secciones mediante:
+
+- Flechas laterales.
+- Teclas de flecha izquierda y derecha.
+- Deslizamiento horizontal en dispositivos táctiles.
+- Estado de la diapositiva en el hash de la URL.
+
+Las flechas quedan ocultas en el primer y último extremo del recorrido. Las
+secciones compartidas cuentan con IDs únicos para evitar conflictos entre
+pestañas y hashes.
+
+## Diseño
+
+- Azul institucional: `#233a83`.
+- Amarillo institucional: `#ffcf02`.
+- Tipografía Roboto con Arial como respaldo.
+- Diseño responsive para escritorio y dispositivos móviles.
+- Contenido preparado para Brightspace sin marcos anidados.
+
+Los recursos compartidos se cargan desde la biblioteca institucional de
+Brightspace. No es necesario publicar archivos de terceros junto con las
+plantillas.
+
+## Desarrollo local
+
+Instala las dependencias locales con:
+
+```powershell
+npm install
+```
+
+Comprueba la versión incluida de OpenSpec:
+
+```powershell
+npm.cmd run openspec -- --version
+```
 
 ## OpenSpec
 
-Los cambios, especificaciones y flujos para GitHub Copilot se guardan en
-`openspec/` y `.github/`. Inicia un cambio con el flujo de OpenSpec
-`/opsx-propose` y aplica sus tareas con `/opsx-apply`. El flujo opcional
-`/opsx-verify` se puede agregar desde `openspec config profile`.
+La carpeta `openspec/` contiene propuestas, especificaciones, diseños y tareas
+de cambios del proyecto. Los flujos de Copilot están disponibles en `.github/`.
+
+- Crear una propuesta: `/opsx-propose`.
+- Aplicar una propuesta: `/opsx-apply`.
+- Verificar una propuesta cuando esté configurado el flujo correspondiente:
+  `/opsx-verify`.
 
 ## Engram
 
-El servidor MCP se ejecuta con el binario local y guarda su base de datos en
-`.local/engram/`, separado de la memoria global de Engram y de otros proyectos.
-`.engram/config.json` fija el nombre del proyecto para sus memorias. Confirma la
-conexión de Engram en la lista de herramientas MCP de VS Code tras recargar la
-carpeta.
+Este repositorio puede usar Engram para conservar memoria local del proyecto.
+Para instalar el binario local:
 
-Los directorios `node_modules/`, `.tools/engram/` y `.local/engram/` son locales
-y están excluidos de Git.
+```powershell
+npm run engram:install
+```
+
+Después, abre o vuelve a cargar la carpeta en VS Code para cargar la
+configuración MCP existente.
+
+Los directorios locales de dependencias y datos no deben incluirse en el
+repositorio:
+
+- `node_modules/`
+- `.tools/engram/`
+- `.local/engram/`
